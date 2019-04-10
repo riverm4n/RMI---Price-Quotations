@@ -1,8 +1,8 @@
-import java.rmi.RemoteExeption;
+import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-public class MQuotationsImple extends UnicastRemoteObject implementes MQuotations{
-  protected MQuotationsImple() throws RemoteExeption{
+public class MQuotationsImple extends UnicastRemoteObject implements MQuotations{
+  protected MQuotationsImple() throws RemoteException{
     super();
   }
 

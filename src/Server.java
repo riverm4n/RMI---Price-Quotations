@@ -3,7 +3,7 @@ import java.rmi.*;
 public class Server{
   public Server(){
     try{
-      MQuotations mquotations = new MQuotations();
+      MQuotations mquotations = new MQuotationsImple();
       Naming.rebind("rmi://localhost/MCotacoes", mquotations);
     }
     catch(Exception e){

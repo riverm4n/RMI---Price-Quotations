@@ -12,5 +12,5 @@ public interface MQuotations extends Remote {
   public void modificar(Moeda moeda, double newPrice) throws RemoteExeption;
   */
 
-  public long hello(long a, long b) throws RemoteException;
+  public long add(long a, long b) throws RemoteException;
 }
