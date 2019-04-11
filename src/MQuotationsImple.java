@@ -77,6 +77,23 @@ public class MQuotationsImple extends UnicastRemoteObject implements MQuotations
     }
   }
 
+  public void modificaCotacao(String moeda1, String moeda2, Double novaCotacao){
+    Iterator<Moeda> iterator = moedas.iterator();
+
+    while(iterator.hasNext()){
+      Moeda atual = iterator.next();
+      if(atual.getName() == moeda1){
+        atual.changeQuotation(moeda2, novaCotacao);
+        System.out.println("O " + moeda2 + " cresceu! Agora 1 " + moeda1 + " custa " + novaCotacao.toString() + " " + moeda2);
+      }
+      else if(atual.getName() == moeda2){
+        double reverse = (1/novaCotacao); //Divisão que representa a cota reversa.
+        atual.changeQuotation(moeda1, (1/novaCotacao));
+        System.out.println("O " + moeda1 + " desvalorizou! Agora 1 " + moeda2 + " custa " + Double.toString(reverse) + " " + moeda1);
+      }
+    }
+  }
+
   public void initList(){
     addMoeda("BRL - Real Brasileiro (R$)");
     addMoeda("USD - Dólar Americano (U$$)");
@@ -109,6 +126,8 @@ public class MQuotationsImple extends UnicastRemoteObject implements MQuotations
     addMoeda("VES - Bolívar Venezuelano (Bs S)");
     addMoeda("BTC - Bitcoin (₿)");
 
+
+    //Testes:
     Iterator<Moeda> iterator = moedas.iterator();
 
     while(iterator.hasNext()){
@@ -118,5 +137,6 @@ public class MQuotationsImple extends UnicastRemoteObject implements MQuotations
     }
 
     removeMoeda("VES - Bolívar Venezuelano (Bs S)");
+    modificaCotacao("BRL - Real Brasileiro (R$)", "USD - Dólar Americano (U$$)", 3.83);
   }
 }

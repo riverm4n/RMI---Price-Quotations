@@ -33,4 +33,12 @@ public class Moeda{
       quotes.put(moeda, quote);
     }
   }
+
+  public void changeQuotation(String moeda, Double quote){
+    //Fazer tratativa do lado do cliete!
+    this.quotes.remove(moeda);
+
+    //Jeito aparentemente mais trivial porém nesse horário foi o melhor que pude pensar.
+    this.quotes.put(moeda, quote);
+  }
 }
