@@ -10,7 +10,7 @@ public interface MQuotations extends Remote {
   Lançar uma RemoteExeption em cada método declarado na interface, por se tratar de uma aplicação distribuída
   é natural que eventuais problemas relacionados a queda na rede possam vir a ocorrer.
   */
-  //public double consultar(Moeda moeda1, Moeda moeda2, double value) throws RemoteException;
+  public double consulta(String moeda1, String moeda2, Double value) throws RemoteException;
   public void addMoeda(String moeda) throws RemoteException;
   public void removeMoeda(String moeda) throws RemoteException;
   public void modificaCotacao(String moeda1, String moeda2, Double novaCotacao) throws RemoteException;

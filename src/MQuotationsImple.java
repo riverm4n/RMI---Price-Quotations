@@ -94,6 +94,28 @@ public class MQuotationsImple extends UnicastRemoteObject implements MQuotations
     }
   }
 
+  public double consulta(String moeda1, String moeda2, Double valor){
+    Iterator<Moeda> iterator = moedas.iterator();
+    double valorCambiado;
+
+    while(iterator.hasNext()){
+      Moeda atual = iterator.next();
+      if(atual.getName() == moeda1){
+        valorCambiado = atual.consulta(moeda2, valor);
+
+        if(valorCambiado > 0){
+          System.out.println(Double.toString(valor) + " " + moeda1 + " é equivalente a " + Double.toString(valorCambiado) + " " + moeda2);
+          return valorCambiado;
+        }
+        else{
+          System.out.println("Ainda não há uma cotação entre as moedas: " + moeda1 + " e " + moeda2 + " ainda, mas você pode adicionar manualmente!");
+        }
+      }
+    }
+
+    return 0.0;
+  }
+
   public void initList(){
     addMoeda("BRL - Real Brasileiro (R$)");
     addMoeda("USD - Dólar Americano (U$$)");
@@ -138,5 +160,6 @@ public class MQuotationsImple extends UnicastRemoteObject implements MQuotations
 
     removeMoeda("VES - Bolívar Venezuelano (Bs S)");
     modificaCotacao("BRL - Real Brasileiro (R$)", "USD - Dólar Americano (U$$)", 3.83);
+    consulta("BRL - Real Brasileiro (R$)", "USD - Dólar Americano (U$$)", 50.0);
   }
 }

@@ -41,4 +41,12 @@ public class Moeda{
     //Jeito aparentemente mais trivial porém nesse horário foi o melhor que pude pensar.
     this.quotes.put(moeda, quote);
   }
+
+  public double consulta(String moeda, Double quote){
+    double out = quotes.get(moeda);
+
+    out /= quote;
+
+    return out;
+  }
 }
