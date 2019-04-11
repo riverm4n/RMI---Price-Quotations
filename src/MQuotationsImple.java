@@ -29,12 +29,13 @@ public class MQuotationsImple extends UnicastRemoteObject implements MQuotations
   public void addMoeda(String nomeDaMoeda) {
 	  if(invalidInsertions(nomeDaMoeda) == false){
 		  Moeda novaMoeda = new Moeda(nomeDaMoeda);
+      moedas.add(novaMoeda);
       System.out.println(nomeDaMoeda + " inserida com sucesso!");
     }
   }
 
   public void initList(){
-    addMoeda("BRL - Real Brasileiro");
+    addMoeda("BRL - Real Brasileiro (R$)");
     addMoeda("USD - Dólar Americano (U$$)");
     addMoeda("EUR - Euro (€)");
     addMoeda("GBP - Libra Esterlina (£)");
@@ -65,10 +66,10 @@ public class MQuotationsImple extends UnicastRemoteObject implements MQuotations
     addMoeda("VES - Bolívar Venezuelano (Bs S)");
     addMoeda("BTC - Bitcoin (₿)");
 
-    Iterator<Moeda> moedasIterator = moedas.iterator();
+    Iterator<Moeda> iterator = moedas.iterator();
 
-    while(moedasIterator.hasNext()){
-      System.out.println("Moeda: " + moedasIterator.next().getName());
+    while(iterator.hasNext()){
+      System.out.println("Moeda: " + iterator.next().getName());
     }
   }
 }
