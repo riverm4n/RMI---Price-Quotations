@@ -12,7 +12,7 @@ public interface MQuotations extends Remote {
   */
   //public double consultar(Moeda moeda1, Moeda moeda2, double value) throws RemoteException;
   public void addMoeda(String moeda) throws RemoteException;
-  //public void remover(Moeda moeda) throws RemoteException;
+  public void removeMoeda(String moeda) throws RemoteException;
   //public void modificar(Moeda moeda, double newPrice) throws RemoteException;
 
   public long add(long a, long b) throws RemoteException;

@@ -27,7 +27,7 @@ public class Moeda{
 
   //Método que adiciona uma Moeda a lista de cotações de outra moeda.
   public void addQuotation(String moeda, Double quote){
-    if(quote <= 0)
+    if(quote < 0) //0 é o valor básico, quer dizer que ainda não há uma cotação associada e deve solicitar ao cliente para que adicione a cotação (através do "modificar cotação").
       System.out.println("Valor inválido! Por favor, insira um valor positivo para a cotação da moeda.");
     else if(!quotes.contains(moeda)){
       quotes.put(moeda, quote);

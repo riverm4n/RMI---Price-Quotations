@@ -29,12 +29,30 @@ public class MQuotationsImple extends UnicastRemoteObject implements MQuotations
   public void addMoeda(String nomeDaMoeda) {
 	  if(invalidInsertions(nomeDaMoeda) == false){
 		  Moeda novaMoeda = new Moeda(nomeDaMoeda);
+      //Adiciona ao fim da lista do servidor
       moedas.add(novaMoeda);
       System.out.println(nomeDaMoeda + " inserida com sucesso!");
     }
   }
 
-  public void removeMoeda(String nomeDaMoeda){
+  public void atualizaAdicionados(String nomeDaMoeda){
+    Iterator<Moeda> iterator = moedas.iterator();
+    Hashtable<String, Double> hashCotacoes;
+
+    Moeda novaMoeda = moedas.getLast(); //Recupera a última da lista do servidor
+
+    while(iterator.hasNext()){
+      Moeda atual = iterator.next();
+      if(!atual.equals(novaMoeda)){
+        atual.addQuotation(nomeDaMoeda, 0.0); //0 - Valor default
+        System.out.println(atual.getName() + " adicionado a lista de cotações de " + novaMoeda.getName() + " com o valor default");
+        novaMoeda.addQuotation(atual.getName(), 0.0);
+        System.out.println(novaMoeda.getName() + " adicionado a lista de cotações de " + atual.getName() + " com o valor default");
+      }
+    }
+  }
+
+  public void removeMoeda (String nomeDaMoeda){
     Iterator<Moeda> iterator = moedas.iterator();
 
     while(iterator.hasNext()){
@@ -94,7 +112,9 @@ public class MQuotationsImple extends UnicastRemoteObject implements MQuotations
     Iterator<Moeda> iterator = moedas.iterator();
 
     while(iterator.hasNext()){
-      System.out.println("Moeda: " + iterator.next().getName());
+      Moeda atual = iterator.next();
+      atualizaAdicionados(atual.getName());
+      System.out.println("Moeda: " + atual.getName());
     }
 
     removeMoeda("VES - Bolívar Venezuelano (Bs S)");
