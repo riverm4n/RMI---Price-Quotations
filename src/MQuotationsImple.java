@@ -34,6 +34,31 @@ public class MQuotationsImple extends UnicastRemoteObject implements MQuotations
     }
   }
 
+  public void removeMoeda(String nomeDaMoeda){
+    Iterator<Moeda> iterator = moedas.iterator();
+
+    while(iterator.hasNext()){
+      Moeda aRemover = iterator.next();
+      if(aRemover.getName() == nomeDaMoeda){
+        moedas.remove(aRemover);
+        atualizaRemovidos(aRemover);
+      }
+    }
+  }
+
+  public void atualizaRemovidos(Moeda moeda){
+    Iterator<Moeda> iterator = moedas.iterator();
+    Hashtable<String, Double> hashCotacoes = new Hashtable<String, Double>();
+
+    while(iterator.hasNext()){
+      Moeda atual = iterator.next();
+      hashCotacoes = atual.getQuotations();
+      hashCotacoes.remove(moeda.getName());
+
+      System.out.println(moeda.getName() + " removido com sucesso das cotações de " + atual.getName());
+    }
+  }
+
   public void initList(){
     addMoeda("BRL - Real Brasileiro (R$)");
     addMoeda("USD - Dólar Americano (U$$)");
@@ -71,5 +96,7 @@ public class MQuotationsImple extends UnicastRemoteObject implements MQuotations
     while(iterator.hasNext()){
       System.out.println("Moeda: " + iterator.next().getName());
     }
+
+    removeMoeda("VES - Bolívar Venezuelano (Bs S)");
   }
 }
