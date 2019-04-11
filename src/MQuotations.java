@@ -1,3 +1,4 @@
+import java.util.*;
 import java.rmi.*;
 
 public interface MQuotations extends Remote {
